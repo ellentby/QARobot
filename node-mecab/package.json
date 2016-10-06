@@ -1,0 +1,29 @@
+{
+  "name": "mecab-lite",
+  "version": "0.0.8",
+  "description": "MeCab library for Node.js",
+  "main": "./lib/mecab-lite",
+  "license":"UNLICENSED",
+  "dependencies": {
+    "iconv-lite": "^0.4.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kujirahand/node-mecab-lite.git"
+  },
+  "keywords": [
+    "MeCab"
+  ],
+  "author": "kujirahand",
+  "bugs": {
+    "url": "https://github.com/kujirahand/node-mecab-lite/issues"
+  },
+  "homepage": "https://github.com/kujirahand/node-mecab-lite",
+  "private": false
+}
+
+
+
