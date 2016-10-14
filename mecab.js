@@ -11,8 +11,6 @@ var text = "InvalidTokenは、「デバイストークンが不正である」�
 var items2 = mecab.wakatigakiSync(text);
 console.log(items2);
 
-var db = connect("<host><:port>/<dbname>")
-
 /*
 var termTable = new Array();
 
