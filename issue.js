@@ -5,71 +5,85 @@ var fs = require("fs");
 var request = require("request");
 var db = require('./db.js');
 var moment = require('moment-timezone');
+var simuDBOpr = 0;
 
-//var token = 'e9f856c32c9fcc25a37ebae2c1a89508b0770948';
-//var token = "9a404e9131c9374ee93683338be0dd8b6720f8b0";
-var token = "1e2cea47428201ef460ba6e53ac4fc5c5625bfbc";
 var jsonFile = "";
 var collection = "";
+var root = "";
+var lastUpdated = "";
 
-exports.updateLocalIssues = function(from/*resporistory of issues*/, to/*collection name in DB*/){
+exports.updateLocalIssues = function(from/*respository of issues*/,
+  to/*collection name in DB*/,
+  issueNumber = 100/*How many issues are to be refreshed, no need to be defined if under 100*/){
+  console.log("Start to download data from repository "+from+" to collection "+to+"...");
   collection = to;
   //var root = "https://api.github.com/repos/NIFTYCloud-mbaas/SupportFAQ/issues";
-  var root = "https://api.github.com/repos/NIFTYCloud-mbaas/"+from+"/issues";
+  root = "https://api.github.com/repos/NIFTYCloud-mbaas/"+from+"/issues";
   jsonFile = from+'Flag.json';
   if(!fs.existsSync(jsonFile)){
-    var lastUpdated = "2000-01-01T00:00:00+09:00";
+    lastUpdated = "2000-01-01T00:00:00+09:00";
   }else{
-    var lastUpdated = JSON.parse(fs.readFileSync(from+'Flag.json')).lastUpdated;
+    lastUpdated = JSON.parse(fs.readFileSync(from+'Flag.json')).lastUpdated;
   }
+  var pages = Math.ceil(issueNumber/100);
 
-  request({
-      url: root,
-      qs: {
-        page: '0',
-        per_page: '1000',
-        access_token: token,
-        since: lastUpdated,
-        state: "all",
-      }, //Query string data
-      method: 'GET',
-      headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'User-Agent': 'ellentby',
-          'Time-Zone': 'Japan',
-          'If-Modified-Since': lastUpdated
-      }
-  }, function(error, response, body){
-      if(error) {
-        console.log(error);
-      }else if(response.statusCode != 200){
-        console.log("Request ERROR: "+response.statusCode);
-        console.log(body);
-      }else {
-          //get issue title and basic info
-          var result = JSON.parse(body);
-          var comments = Array();
-          for(var i=0; i<result.length; i++){
-            var document = {};
-            document.issueId = result[i].number;
-            document.question = result[i].title;
-            document.description = result[i].body;
-            document.labels = Array();
-            for(var j=0; j<result[i].labels.length; j++){
-              document.labels[j] = result[i].labels[j]["name"];
-            }
-            document.url = JSON.stringify(result[i].url);
-            //save comment url and request them after this callback function
-            comments[i] = Array();
-            comments[i]["issueId"] = document.issueId;
-            comments[i]["comments_url"] = result[i].comments_url;
-            db.insertOrUpdate(collection, {issueId:document["issueId"]}, document);
-          }
-          console.log((i)+" issues updated!");
-      }
-      return updateComment(comments);
+  db.connect(function(){
+    for(var i=1; i<=pages; i++){
+      updateIssueMeta(i,100);
+    }
   });
+  refreshUpdateTime();
 }
+
+var updateIssueMeta = function(pageNo,perPage){
+    request({
+        url: root,
+        qs: {
+          page: pageNo,
+          per_page: perPage,
+          access_token: token,
+          since: lastUpdated,
+          state: "all",
+        }, //Query string data
+        method: 'GET',
+        headers: {
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'ellentby',
+            'Time-Zone': 'Japan',
+            'If-Modified-Since': lastUpdated
+        }
+    }, function(error, response, body){
+        if(error) {
+          console.log(error);
+        }else if(response.statusCode != 200){
+          console.log("Request ERROR: "+response.statusCode);
+          console.log(body);
+        }else {
+            //get issue title and basic info
+            var result = JSON.parse(body);
+            var comments = Array();
+            for(var i=0; i<result.length; i++){
+              var document = {};
+              document.issueId = result[i].number;
+              document.question = result[i].title;
+              document.description = result[i].body;
+              document.labels = Array();
+              for(var j=0; j<result[i].labels.length; j++){
+                document.labels[j] = result[i].labels[j]["name"];
+              }
+              document.url = result[i].url;
+              //save comment url and request them after this callback function
+              comments[i] = Array();
+              comments[i]["issueId"] = document.issueId;
+              comments[i]["comments_url"] = result[i].comments_url;
+              db.insertOrUpdate(collection, {issueId:document["issueId"]}, document);
+            }
+            console.log("page "+pageNo+": "+(i)+" issues updating...");
+        }
+        return updateComment(comments);
+    });
+}
+
 var updateComment = function(array){
   for(var i=0; i<array.length; i++){
     request({
@@ -82,7 +96,7 @@ var updateComment = function(array){
         }
     }, function(error2, response2, body2){
           if(error2) {
-              console.log(error2);
+              //console.log(error2);
           } else {
             var result2 = JSON.parse(body2);
             var commentArray = Array();
@@ -103,8 +117,7 @@ var updateComment = function(array){
           }
       });
   }
-  console.log("comments updated!");
-  return refreshUpdateTime();
+  console.log("comments updating...");
 }
 
 var refreshUpdateTime = function(){
@@ -112,8 +125,9 @@ var refreshUpdateTime = function(){
   fs.writeFile(jsonFile , "{\"lastUpdated\":\""+ now +"\"}", function(err) {
       if(err) {
           return console.log(err);
+      }else{
+        console.log("Write update time to local: "+now);
       }
-      console.log("updating finished! Flag refreshed! Now is " + now);
     });
 }
 

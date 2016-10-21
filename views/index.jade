@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action='qarobot')
+    textarea(id='answer' name='question') #{question}
+    br
+    input(type='submit' value='Ask')
+
+  p
+    if issue != null
+      for i in issue
+        div!= marked(i)
+
+    if urls != null
+      下記のQ＆Aを参照ください：
+      ul
+        for question in questions
+          li
+            <a href='qarobot?issueId=#{question.issueId}'>#{question.question}</a>
