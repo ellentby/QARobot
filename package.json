@@ -13,6 +13,9 @@
   "author": "Nifty",
   "license": "UNLICENSED",
   "dependencies": {
-    "mongodb": "2.2.10"
+    "fs": "0.0.1-security",
+    "moment-timezone": "^0.5.7",
+    "mongodb": "2.2.10",
+    "request": "^2.75.0"
   }
 }
