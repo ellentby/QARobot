@@ -118,7 +118,6 @@ function updateTFIDF(){
             }
           }
           console.log("Refresh KeyWordDictionary...");
-          console.log(wordsInFAQ);
           for(idx in wordsInFAQ){
             if(wordsInFAQ[idx]["nbest"] != null && wordsInFAQ[idx]["nbest"]){
               db.insertOrUpdate(ketworddictionary, {keyword:idx},

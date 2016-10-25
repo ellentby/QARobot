@@ -179,6 +179,7 @@ setInterval(function() {
       console.log("DB connection will be closed in "+timer+" s");
     }else if(timer == 0){
       console.log("DB connection is closed");
+      console.log("Done!");
     }
   }else{
     timerOn = false;

@@ -1,21 +1,28 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    meta(charset="utf-8")
 
-block content
-  h1= title
+  body(style='background: #003366;')
+    div(align='center' style='padding-top:10px;padding-bottom:5px')
+      img(src="robot.png")
+    div(style='color:white;margin-bottom:20px' align='center')
+      何をお聞きたいですか？
+    form(action='qarobot')
+      div(align='center')
+        input(type='text' id='answer' name='question' style='width:80%;border-radius:25px;height:30px;padding-left:20px;padding-right:20px;font-size:20px')
+      div(align='center')
+        input(type='submit' value='Ask' style='width:80px;margin-top:10px;margin-bottom:10px')
+      div(style='height:20px')
+    div(style='background-image: url("blue-center.png"); width:80%; margin:0 auto; border-radius:25px; padding-top:10px;padding-left:20px; padding-right:20px; padding-bottom:20px')
+      if issue != null
+        for i in issue
+          div!= marked(i)
 
-  form(action='qarobot')
-    textarea(id='answer' name='question') #{question}
-    br
-    input(type='submit' value='Ask')
-
-  p
-    if issue != null
-      for i in issue
-        div!= marked(i)
-
-    if urls != null
-      下記のQ＆Aを参照ください：
-      ul
-        for question in questions
-          li
-            <a href='qarobot?issueId=#{question.issueId}'>#{question.question}</a>
+      if urls != null
+        下記のQ＆Aを参照ください：
+        ul
+          for question in questions
+            li
+              <a href='qarobot?issueId=#{question.issueId}'>#{question.question}</a>

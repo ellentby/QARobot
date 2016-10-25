@@ -6,6 +6,8 @@ var marked = require('marked');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(express.static(path.join(__dirname, 'statics')));
+
 
 app.get('/qarobot', function (req, res) {
   if(req.query.question === undefined){

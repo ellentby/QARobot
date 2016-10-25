@@ -7,12 +7,19 @@ var db = require('./db.js');
 var moment = require('moment-timezone');
 var simuDBOpr = 0;
 
+
 var jsonFile = "";
 var collection = "";
 var root = "";
 var lastUpdated = "";
+var col1 = "dictionary";
+var col2 = "userCommunity";
+var res1 = "SupportFAQ";
+var res2 = "UserCommunity";
 
-exports.updateLocalIssues = function(from/*respository of issues*/,
+  updateLocalIssues(res1, col1);
+
+function updateLocalIssues(from/*respository of issues*/,
   to/*collection name in DB*/,
   issueNumber = 100/*How many issues are to be refreshed, no need to be defined if under 100*/){
   console.log("Start to download data from repository "+from+" to collection "+to+"...");
@@ -120,7 +127,7 @@ var updateComment = function(array){
   console.log("comments updating...");
 }
 
-var refreshUpdateTime = function(){
+function refreshUpdateTime(){
   var now = moment().tz("Asia/Tokyo").format();
   fs.writeFile(jsonFile , "{\"lastUpdated\":\""+ now +"\"}", function(err) {
       if(err) {

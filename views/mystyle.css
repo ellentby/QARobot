@@ -1,0 +1,11 @@
+#robot
+{
+  text-align:left;
+  color:red;
+  background-image:url('robotDialog.png');
+  background-repeat:no-repeat;
+  MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+  height:200px;
+  padding-left:30%;
+  padding-top:3%;
+}
