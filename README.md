@@ -48,7 +48,7 @@
 
 * Q＆AをGithub issueから取得し、ローカルに保存
  * issue.jsの中の以下の変数バリューを変更します。
-   * `````root`````はrepositoryのルートディレクトリーです（例として：このrepositoryのルートディレクトリーは`````https://github.com/ellentby`````です）。
+   * `````root`````は<b>github API</b>のルートディレクトリーです（例として：このrepositoryのルートディレクトリーは`````https://api.github.com/repos/ellentby`````です）。
  Githubに接続するため、`````ACCESS TOKEN`````が必要です。<br/>
    * トークンを取得する方法は<a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">こちら</a>を参照ください。
     * `````res1`````はキーワード抽出の正確度を高めるための参考用issueのResiporitoryで、`````res2`````は実際に利用するResiporitoryです。
