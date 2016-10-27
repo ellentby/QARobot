@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-var md = require('markdown-it')
 var marked = require('marked');
 
 app.set('views', path.join(__dirname, 'views'));
