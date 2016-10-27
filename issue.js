@@ -7,7 +7,7 @@ var db = require('./db.js');
 var moment = require('moment-timezone');
 var simuDBOpr = 0;
 
-
+var token = YOUR_GITHUB_ACCESS_TOKEN;
 var jsonFile = "";
 var collection = "";
 var root = "";
