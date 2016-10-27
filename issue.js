@@ -12,10 +12,10 @@ var jsonFile = "";
 var collection = "";
 var root = "";
 var lastUpdated = "";
-var col1 = "dictionary";
-var col2 = "userCommunity";
-var res1 = "SupportFAQ";
-var res2 = "UserCommunity";
+var col1 = COLLECTION_OF_SUPPORT_MATERIALS_TO_MAKE_TFIDF_MORE_ACCURATE;
+var col2 = COLLECTION_OF_Q&A_YOU_ACTUALLY_USE_TO_PROVIDE_AN_ANSWER;
+var res1 = GITHUB_REPOSITORY_OF_COL1;
+var res2 = GITHUB_REPOSITORY_OF_COL2;
 
   updateLocalIssues(res1, col1);
 
