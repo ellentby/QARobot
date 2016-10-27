@@ -47,8 +47,14 @@
   ``````
 
 * Q＆AをGithub issueから取得し、ローカルに保存
- * issue.jsの中の以下の変数バリューを変更します。Githubに接続するため、`````ACCESS TOKEN`````が必要です。トークンを取得する方法は<a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">こちら</a>を参照ください。`````res1`````はキーワード抽出の正確度を高めるための参考用issueのResiporitoryで、`````res2`````は実際に利用するResiporitoryです。
+ * issue.jsの中の以下の変数バリューを変更します。
+   * `````root`````はrepositoryのルートディレクトリーです（例として：このrepositoryのルートディレクトリーは`````https://github.com/ellentby`````です）。
+ Githubに接続するため、`````ACCESS TOKEN`````が必要です。<br/>
+   * トークンを取得する方法は<a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">こちら</a>を参照ください。
+    * `````res1`````はキーワード抽出の正確度を高めるための参考用issueのResiporitoryで、`````res2`````は実際に利用するResiporitoryです。
+ 
   `````js
+  var root = ROOT_URL_OF_YOUR_REPOSITORIES;
   var token = YOUR_GITHUB_ACCESS_TOKEN;
   var col1 = COLLECTION_OF_SUPPORT_MATERIALS_TO_MAKE_TFIDF_MORE_ACCURATE;
   var col2 = COLLECTION_OF_Q&A_YOU_ACTUALLY_USE_TO_PROVIDE_AN_ANSWER;
@@ -127,7 +133,7 @@ access tokenは場合により失効する可能性があります。もし`````
 #### キーワード辞書生成アルゴリズムとマッチングする際のQ&A特徴量計算方法を改善
 
 #### issueのQ&Aの改善
-言葉使いをより自然になれるよう改善します。（よりカ客観的な用語を使う）
+言葉使いをより自然になれるよう改善します。（より客観的な用語を使う）
 
 ####　データ量の増加
 2つのrepositoryのissue数を増加します。
