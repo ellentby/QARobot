@@ -18,6 +18,7 @@ var res1 = GITHUB_REPOSITORY_OF_COL1;
 var res2 = GITHUB_REPOSITORY_OF_COL2;
 
   updateLocalIssues(res1, col1);
+  updateLocalIssues(res2, col2);
 
 function updateLocalIssues(from/*respository of issues*/,
   to/*collection name in DB*/,
