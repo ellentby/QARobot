@@ -10,7 +10,7 @@ var simuDBOpr = 0;
 var token = YOUR_GITHUB_ACCESS_TOKEN;
 var jsonFile = "";
 var collection = "";
-var root = "";
+var root = ROOT_URL_OF_YOUR_REPOSITORIES;
 var lastUpdated = "";
 var col1 = COLLECTION_OF_SUPPORT_MATERIALS_TO_MAKE_TFIDF_MORE_ACCURATE;
 var col2 = COLLECTION_OF_Q&A_YOU_ACTUALLY_USE_TO_PROVIDE_AN_ANSWER;
@@ -25,7 +25,7 @@ function updateLocalIssues(from/*respository of issues*/,
   console.log("Start to download data from repository "+from+" to collection "+to+"...");
   collection = to;
   //var root = "https://api.github.com/repos/NIFTYCloud-mbaas/SupportFAQ/issues";
-  root = "https://api.github.com/repos/NIFTYCloud-mbaas/"+from+"/issues";
+  root = root+from+"/issues";
   jsonFile = from+'Flag.json';
   if(!fs.existsSync(jsonFile)){
     lastUpdated = "2000-01-01T00:00:00+09:00";
