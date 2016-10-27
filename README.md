@@ -66,7 +66,8 @@
   
   ![画像2](/readme-img/node-issue.gif)
   
-* Q&Aのキーワード辞書をコマンドで作成。nbestForDic.jsの中の以下の変数バリューを変更します。
+* Q&Aのキーワード辞書をコマンドで作成。
+  * nbestForDic.jsの中の以下の変数バリューを変更します。
   * 上記と同様、`````res1`````、`````res2`````、`````col1`````、`````col2`````のバリューを変更してください。
   * 【command line】 `````node nbestForDic`````
   * 実行完成後、`````KeyWordDocument`````という新しいColletionが生成します。
