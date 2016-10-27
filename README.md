@@ -34,6 +34,8 @@
   * 自然言語処理エンジン
 * Github issue
   * GithubのissueでQ＆Aを整理し、ローカルデータベースに更新します。（<a href='https://github.com/NIFTYCloud-mbaas/UserCommunity/issues'>issueの例</a>）
+
+####Node.jsとMecabのインストールは<a href="https://github.com/ellentby/QARobot/blob/master/Mecab%E3%80%81Node.js%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A.pptx">「Mecab、Node.jsの環境設定.pptx」</a>をご参照ください。
 <br/><br/>
   
   
