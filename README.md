@@ -137,5 +137,5 @@ access tokenは場合により失効する可能性があります。もし`````
 
 ## 参考
 <a href="https://datumstudio.jp/backstage/643">さぁ、自然言語処理を始めよう！</a><br/>
-<a href="http://qiita.com/ynakayama/items/300460aa718363abc85c">特徴抽出と TF-IDF</a>
-<a href="https://github.com/ellentby/QARobot/blob/master/Mecab%E3%80%81Node.js%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A.pptx?raw=true">Mecab、Node.jsの環境設定</a>
+<a href="http://qiita.com/ynakayama/items/300460aa718363abc85c">特徴抽出と TF-IDF</a><br/>
+<a href="https://github.com/ellentby/QARobot/blob/master/Mecab%E3%80%81Node.js%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A.pptx">Mecab、Node.jsの環境設定</a>
