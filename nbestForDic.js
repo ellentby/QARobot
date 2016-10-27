@@ -2,12 +2,12 @@ var db = require('./db.js');
 var Mecab = require('./node-mecab/lib/mecab-lite.js');
 var issue = require('./issue.js');
 
-var col1 = "dictionary";
-var col2 = "userCommunity";
-var res1 = "SupportFAQ";
-var res2 = "UserCommunity";
-var ketworddictionary = "KeyWordDictionary";//store in DB
+var col1 = COLLECTION_OF_SUPPORT_MATERIALS_TO_MAKE_TFIDF_MORE_ACCURATE;
+var col2 = COLLECTION_OF_Q&A_YOU_ACTUALLY_USE_TO_PROVIDE_AN_ANSWER;
+var res1 = GITHUB_REPOSITORY_OF_COL1;
+var res2 = GITHUB_REPOSITORY_OF_COL2;
 var nbest = 10;//how many key words do we find from each faq
+var ketworddictionary = "KeyWordDictionary";//store in DB
 
 //issue.updateLocalIssues(res2, col2, 700);
 
